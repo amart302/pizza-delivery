@@ -1,0 +1,129 @@
+header{
+    max-width: 1400px;
+    margin-inline: auto;
+    padding: 20px;
+}
+.header-container1{
+    display: grid;
+    grid-template-columns: 100px 1fr 1fr;
+    gap: 30px;
+}
+.header-logo-container img{
+    width: 100%;
+}
+.delivery-info{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 10px;
+}
+.delivery-details{
+    display: flex;
+    gap: 6px;
+}
+.delivery-title{
+    font-size: 17px;
+    font-weight: 700;
+    color: #231F20;
+}
+.delivery-location{
+    font-size: 17px;
+    font-weight: 600;
+    color: #F7D22D;
+}
+.delivery-container{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.delivery-container div{
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+.delivery-container span{
+    font-size: 13px;
+    font-weight: 700;
+    color: #231F20;
+}
+.delivery-platform img{
+    width: 18px;
+}
+.delivery-separator{
+    height: 4px;
+    width: 4px;
+    border-radius: 50%;
+    background-color: #FF2E65;
+}
+.header-call-button-container{
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    justify-content: end;
+}
+.header-call-button{
+    width: 180px;
+    height: 42px;
+    border: none;
+    background-color: #F3F3F7;
+    border-radius: 28px;
+    color: #696F7A;
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
+}
+.header-phone-number{
+    color: #F7D22D;
+    font-size: 26px;
+    font-weight: 700;
+}
+
+.header-container2{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+}
+nav{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+a{
+    text-decoration: none;
+    color: #0E0C0D;
+    font-size: 15px;
+    font-weight: 600;
+    transition: all 0.1s;
+}
+a:hover{
+    color: #F7D22D;
+}
+.header-buttons-container{
+    display: flex;
+    align-items: center;
+    justify-content: end;
+    gap: 20px;
+}
+.login-button{
+    color: #696F7A;
+    font-size: 16px;
+    font-weight: 700;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+}
+.basket-button{
+    background-color: #F7D22D;
+    color: #231F20;
+    font-size: 16px;
+    font-weight: 700;
+    border-radius: 8px;
+    border: none;
+    width: 150px;
+    height: 42px;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+.basket-button:hover{
+    background-color: #ecc92c;
+}

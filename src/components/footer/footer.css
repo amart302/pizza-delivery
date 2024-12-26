@@ -1,0 +1,125 @@
+footer{
+    max-width: 1400px;
+    margin-inline: auto;
+    padding: 80px 20px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 40px;
+    position: relative;
+}
+.big-logo{
+    width: 404px;
+    height: 148px;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+}
+
+.footer-container1{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+.footer-logo-container img{
+    width: 100px;
+}
+.footer-links{
+    display: flex;
+    gap: 30px;
+}
+.footer-links a{
+    font-size: 16px;
+    font-weight: 700;
+}
+.social-media{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+.social-media p{
+    font-size: 16px;
+    font-weight: 700;
+    color: #0E0C0D;
+}
+.social-media-links{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+}
+.social-media-links a{
+    font-size: 16px;
+    font-weight: 600;
+    color: #575757;
+}
+.footer-bottom{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    align-items: center;
+}
+.copyright{
+    color: #0E0C0D;
+    font-size: 14px;
+    font-weight: 600;
+}
+.payment-systems{
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    gap: 16px;
+}
+
+.footer-container2{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    gap: 30px;
+}
+.social-madia2{
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+.social-madia2 p{
+    color: #0E0C0D;
+    font-weight: 700;
+    font-size: 14px;
+}
+.social-madia2-links{
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+}
+.social-madia2-links button{
+    padding: 8px 18px;
+    border-radius: 12px;
+    border: solid 2px #E3ECF5;
+    background-color: white;
+    cursor: pointer;
+}
+.writeToUs{
+    color: #575757;
+    font-size: 13px;
+    font-weight: 700;
+    grid-column: span 2;
+}
+.footer-call-button-container{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+.footer-phone-number{
+    color: #F7D22D;
+    font-size: 30px;
+    font-weight: 700;
+}
+.footer-call-button{
+    width: 180px;
+    height: 42px;
+    border: none;
+    border-radius: 28px;
+    background-color: #F3F3F7;
+    color: #696F7A;
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
+}
