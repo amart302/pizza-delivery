@@ -16,13 +16,10 @@ export default function Catalog(isLoading){
     }
 
     return(
-        <div className="products-container-parent">
-            {
-                isLoading.meaning && <ProductsLoader count={12} />
-            }
             <div className="products-container">
                 {
-                    !isLoading.meaning && data.map(item => (
+                    (isLoading.meaning) ? <ProductsLoader count={12} />
+                    : data.map(item => (
                         <div className="product-card" key={item.id}>
                             <img src={item.image} alt="" />
                             <div className="product-info">
@@ -36,7 +33,6 @@ export default function Catalog(isLoading){
                         </div>
                     ))
                 }
-            </div>
         </div>
     )
 }

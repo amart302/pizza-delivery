@@ -1,12 +1,20 @@
 import { useSelector } from "react-redux";
 import "./header.css";
 import { useNavigate } from "react-router-dom";
+import { useState } from "react";
+import RegistrationWindow from "../registrarionWindow/RegistrationWindow";
 
 export default function Header(){
     const basketLength = useSelector(state => state.basket.length);
     const navigate = useNavigate();
+    const [ form, setForm ] = useState(false);
+    
+    const closeForm = () => {
+        setForm(false);
+    };
 
     return(
+        <>
         <header>
             <div className="header-container1">
                 <div className="header-logo-container">
@@ -54,10 +62,14 @@ export default function Header(){
                     <a href="#">Контакты</a>
                 </nav>
                 <div className="header-buttons-container">
-                    <button className="login-button">Войти</button>
+                    <button className="login-button" onClick={() => setForm(true)}>Войти</button>
                     <button className="basket-button" onClick={() => navigate("/basket")}>Корзина | {basketLength}</button>
                 </div>
             </div>
         </header>
+                {
+                    form && <RegistrationWindow onClose={ closeForm }/>
+                }
+        </>
     )
 }

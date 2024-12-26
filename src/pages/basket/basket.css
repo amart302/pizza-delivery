@@ -3,48 +3,49 @@
     margin-inline: auto;
     display: flex;
     flex-direction: column;
+    justify-content: center;
+    align-items: center;
     gap: 200px;
 }
 .basket-main h2{
-    text-align: center;
     font-size: 40px;
 }
 .basket-products-container{
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 20px;
+    grid-template-columns: 1fr;
 }
-.product-card{
-    display: flex;
-    flex-direction: column;
+.basket-card{
+    display: grid;
+    grid-template-columns: 160px 1fr 100px 200px 30px;
+    align-items: center;
     padding: 20px;
-    padding-bottom: 60px;
     position: relative;
 }
-.product-card img{
+.basket-card img{
     width: 100%;
 }
-.product-info{
+.basket-card-info{
     display: flex;
     flex-direction: column;
     gap: 10px;
 }
-.product-name{
-    font-size: 24px;
-    font-weight: 800;
-    color: #797979;
+.basket-card-name{
+    font-size: 19px;
+    font-weight: 700;
+    color: #0E0C0D;
 }
-.product-description{
+.basket-card-description{
     font-size: 13px;
     font-weight: 500;
     color: #686466;
 }
-.product-price{
+.basket-card-price{
+    text-align: center;
     font-size: 22px;
     font-weight: 700;
     color: #231F20;
 }
-.product-card-bottom{
+.basket-card-card-bottom{
     width: calc(100% - 40px);
     position: absolute;
     bottom: 0;
@@ -52,17 +53,30 @@
     grid-template-columns: 1fr 220px;
     align-items: center;
 }
-.add-to-basket-button{
-    border: none;
-    background-color: #F7D22D;
-    color: white;
-    font-size: 14px;
-    font-weight: 700;
-    height: 46px;
-    border-radius: 12px;
-    cursor: pointer;
-    transition: all 0.2s;
+.basket-card-quantity-parent{
+    display: flex;
+    justify-content: center;
 }
-.add-to-basket-button:hover{
-    background-color: #e2c02a;
+.basket-card-quantity{
+    display: flex;
+    gap: 10px;
+    background-color: #F3F3F7;
+    color: #696F7A;
+    font-size: 16px;
+    font-weight: 700;
+    border-radius: 8px;
+    align-items: center;
+}
+.basket-card-quantity button{
+    background: transparent;
+    border: none;
+    height: 36px;
+    width: 40px;
+    font-size: 18px;
+    font-size: 600;
+    color: #696F7A;
+    cursor: pointer;
+}
+.deleteCross{
+    cursor: pointer;
 }

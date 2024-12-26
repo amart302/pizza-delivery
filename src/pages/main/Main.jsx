@@ -3,10 +3,11 @@ import Catalog from "../../components/catalog/Catalog";
 import Footer from "../../components/footer/Footer";
 import Header from "../../components/header/Header";
 import NewProducts from "../../components/newProducts/NewProducts";
-
-import "./main.css";
 import { fetchData } from "../../store/products";
 import { useDispatch, useSelector } from "react-redux";
+import RegistrationWindow from "../../components/registrarionWindow/RegistrationWindow";
+
+import "./main.css";
 
 export default function Main(){
     const [ isLoading, setIsLoading ] = useState(true);
@@ -18,6 +19,8 @@ export default function Main(){
         setTimeout(() => {
             if(data) setIsLoading(false);
         }, 2000)
+        console.log(data);
+        
     }, [])
 
     return(

@@ -3,7 +3,6 @@ import Footer from "../../components/footer/Footer";
 import Header from "../../components/header/Header";
 
 import "./basket.css";
-import NewProducts from "../../components/newProducts/NewProducts";
 import { useEffect, useState } from "react";
 
 export default function Basket(){
@@ -22,23 +21,24 @@ export default function Basket(){
                 <div className="basket-products-container">
                     {
                         check && basket.map(item => (
-                            <div className="product-card" key={item.id}>
+                            <div className="basket-card" key={item.id}>
                             <img src={item.image} alt="" />
-                            <div className="product-info">
-                                <p className="product-name">{item.name}</p>
-                                <p className="product-description">{item.description}</p>
+                            <div className="basket-card-info">
+                                <p className="basket-card-name">{item.name}</p>
+                                <p className="basket-card-description">{item.description}</p>
                             </div>
-                            <div className="product-card-bottom">
-                                <p className="product-price">от {item.price} ₽</p>
-                                <button className="add-to-basket-button">Добавить в корзину</button>
+                            <p className="basket-card-price">{item.price} ₽</p>
+                            <div className="basket-card-quantity-parent">
+                                <div className="basket-card-quantity">
+                                    <button style={{borderRadius: "8px 0px 0px 8px"}}>-</button>
+                                    <p>1</p>
+                                    <button style={{borderRadius: "0px 8px 8px 0px"}}>+</button>
+                                </div>
                             </div>
+                            <img src="./images/deleteCross.svg" alt="" className="deleteCross" />
                         </div>
                         ))
                     }
-                </div>
-                <div className="offer-container">
-                    <h2>Также можем предложить</h2>
-                    <NewProducts />
                 </div>
             </main>
             <Footer />

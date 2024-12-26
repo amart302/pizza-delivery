@@ -1,0 +1,45 @@
+form{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    background-color: white;
+    padding: 30px;
+    border-radius: 12px;
+}
+form span{
+    color: #F7D22D;
+    font-size: 30px;
+    font-weight: 800;
+    margin-bottom: 30px;
+}
+form input{
+    border: solid 1px #E2E2E9;
+    border-radius: 8px;
+    padding: 10px;
+    font-size: 15px;
+    font-weight: 700;
+    color: #231F20;
+    transition: all 0.2s;
+}
+form input:focus{
+    border: solid 2px #F7D22D;
+    outline: none;
+}
+.form-group{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+}
+form button{
+    background-color: #F7D22D;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+form button:hover{
+    background-color: #e2c02a;
+}
