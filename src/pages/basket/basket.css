@@ -1,24 +1,31 @@
 .basket-main{
+    position: relative;
     max-width: 1400px;
     margin-inline: auto;
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 200px;
+    justify-content: space-between;
+    min-height: 51vh;
+    gap: 0;
+    padding-inline: 20px;
 }
 .basket-main h2{
     font-size: 40px;
+    font-weight: 800;
+    color: #231F20;
+}
+.emptyBasket{
+    width: 200px;
 }
 .basket-products-container{
     display: grid;
     grid-template-columns: 1fr;
+    width: 100%;
 }
 .basket-card{
     display: grid;
     grid-template-columns: 160px 1fr 100px 200px 30px;
     align-items: center;
-    padding: 20px;
     position: relative;
 }
 .basket-card img{
@@ -79,4 +86,92 @@
 }
 .deleteCross{
     cursor: pointer;
+}
+.orderAmountContainer{
+    height: 240px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+}
+.promoCodeContainer{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 20px;
+}
+.promoCodeContainer h3{
+    font-size: 22px;
+    font-weight: 600;
+    color: #FF2E65;
+}
+.backToShopButton{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    background: transparent;
+    border: none;
+    display: flex;
+    align-items: center;
+    font-size: 15px;
+    font-weight: 700;
+    color: #696F7A;
+    gap: 10px;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+.promoCodeInputContainer input{
+    height: 24px;
+    border: solid 1px #E2E2E9;
+    padding: 10px 24px;
+    border-radius: 8px 0 0 8px;
+    transition: all 0.2s;
+}
+.promoCodeInputContainer input:focus{
+    outline: none;
+    border: solid 1px #F7D22D;
+}
+.promoCodeInputContainer button{
+    height: 100%;
+    padding: 10px 20px;
+    border-radius: 0 8px 8px 0 ;
+    border: none;
+    background-color: #F7D22D;
+    color: #231F20;
+    font-size: 13px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+.promoCodeInputContainer button:hover{
+    background-color: #e2c02a;
+}
+.orderSummaryContainer{
+    display: flex;
+    flex-direction: column;
+    align-items: end;
+    justify-content: end;
+    gap: 26px;
+}
+.orderSummaryContainer h3{
+    font-size: 24px;
+    font-size: 600;
+}
+.orderSummaryContainer h3 span{
+    font-size: 36px;
+    font-weight: 800;
+    color: #F7D22D;
+}
+.orderSummaryContainer button{
+    background-color: #F7D22D;
+    color: #231F20;
+    border: none;
+    border-radius: 8px;
+    height: 56px;
+    width: 224px;
+    font-size: 15px;
+    font-weight: 800;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+.orderSummaryContainer button:hover{
+    background-color: #e2c02a;
 }

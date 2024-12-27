@@ -1,21 +1,5 @@
-import { useDispatch, useSelector } from "react-redux";
-import "./header.css";
-import { useNavigate } from "react-router-dom";
-import { useEffect, useState } from "react";
-import RegistrationWindow from "../registrarionWindow/RegistrationWindow";
-
-export default function Header(){
-    const dispatch = useDispatch();
-    const user = useSelector(state => state.user);
-    const basketLength = useSelector(state => state.basket).length;
+export default function BasketHeader(){
     
-    const navigate = useNavigate();
-    const [ form, setForm ] = useState(false);
-    
-    const closeForm = () => {
-        setForm(false);
-    };
-
     return(
         <>
         <header>
@@ -50,35 +34,7 @@ export default function Header(){
                     <span className="header-phone-number">8 499 391-84-49</span>
                 </div>
             </div>
-            <div className="header-container2">
-                <nav>
-                    <a href="#">Пицца</a>
-                    <a href="#">Паста</a>
-                    <a href="#">Супы</a>
-                    <a href="#">Салаты</a>
-                    <a href="#">Напитки</a>
-                    <a href="#">Десерты</a>
-                    <a href="#">Бакалея</a>
-                    <a href="#">Антипасти</a>
-                    <a href="#">Акции</a>
-                    <a href="#">Комбо</a>
-                    <a href="#">Контакты</a>
-                </nav>
-                <div className="header-buttons-container">
-                    {
-                        (!user) ? <button className="login-button" onClick={() => setForm(true)}>Войти</button> : <button className="login-button" onClick={() => {
-                            localStorage.setItem("user", null);
-                            dispatch({type: "SAVE_USER_DATA", payload: null});
-                            window.location.reload();
-                        }}>Выйти</button>
-                    }
-                    <button className="basket-button" onClick={() => navigate("/basket")}>Корзина | {basketLength}</button>
-                </div>
-            </div>
         </header>
-                {
-                    form && <RegistrationWindow onClose={ closeForm }/>
-                }
         </>
     )
 }

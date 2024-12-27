@@ -95,6 +95,10 @@ footer{
     border: solid 2px #E3ECF5;
     background-color: white;
     cursor: pointer;
+    transition: all 0.2s;
+}
+.social-madia2-links button:hover{
+    background-color: rgb(231, 231, 231);
 }
 .writeToUs{
     color: #575757;

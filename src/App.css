@@ -19,6 +19,7 @@
   z-index: 4;
 }
 form{
+  width: 644px;
   position: relative;
   display: flex;
   flex-direction: column;
@@ -32,4 +33,9 @@ form{
   top: 30px;
   right: 30px;
   cursor: pointer;
+}
+.error-message{
+  color: red;
+  font-size: 13px;
+  grid-column: 2;
 }

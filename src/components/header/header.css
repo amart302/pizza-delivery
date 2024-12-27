@@ -71,6 +71,10 @@ header{
     font-size: 14px;
     font-weight: 700;
     cursor: pointer;
+    transition: all 0.2s;
+}
+.header-call-button:hover{
+    background-color: #e7e7e7;
 }
 .header-phone-number{
     color: #F7D22D;
