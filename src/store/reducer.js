@@ -1,10 +1,11 @@
 const initialState = {
     data: [],
-    basket: [],
+    basket: JSON.parse(localStorage.getItem("basket")) || [],
     user: JSON.parse(localStorage.getItem("user")) || null
 };
 
 export function reducer(state = initialState, action){
+    let newBasket;
     switch(action.type){
         case "ADD_MANY_PRODUCTS":
             return {...state, data: [...action.payload]};
@@ -13,26 +14,28 @@ export function reducer(state = initialState, action){
             product.basketId = action.payload.basketId;
             product.quantity = 1;
             if(state.basket.find(item => item.id === product.id)){
-                return {
-                    ...state,
-                    basket: state.basket.map(item => item.id === action.payload.id ? {...item, quantity: item.quantity + 1 } : item)
-                }
+                newBasket = state.basket.map(item => item.id === action.payload.id ? {...item, quantity: item.quantity + 1 } : item);
+                localStorage.setItem("basket", JSON.stringify(newBasket));
+                return {...state, basket: newBasket};
             }else{
-                return {...state, basket: [...state.basket, product]};
+                newBasket = [...state.basket, product];
+                localStorage.setItem("basket", JSON.stringify(newBasket));
+                return {...state, basket: newBasket};;
             }
         case "REMOVE_TO_BASKET":
-            return {...state, basket: state.basket.filter(item => item.basketId !== action.payload)}
+            newBasket = state.basket.filter(item => item.basketId !== action.payload);
+            localStorage.setItem("basket", JSON.stringify(newBasket));
+            return {...state, basket: newBasket};
         case "INCREMENT_QUANTITY":
-            return {
-                ...state,
-                basket: state.basket.map(item => item.basketId === action.payload ? {...item, quantity: item.quantity + 1 } : item)
-            }
+            newBasket = state.basket.map(item => item.basketId === action.payload ? {...item, quantity: item.quantity + 1 } : item);
+            localStorage.setItem("basket", JSON.stringify(newBasket));
+            return {...state, basket: newBasket};
         case "DECREMENT_QUANTITY":
-            return {
-                ...state,
-                basket: state.basket.map(item => item.basketId === action.payload ? {...item, quantity: (item.quantity > 1) ? item.quantity - 1 : item.quantity } : item)
-            }
+            newBasket = state.basket.map(item => item.basketId === action.payload ? {...item, quantity: (item.quantity > 1) ? item.quantity - 1 : item.quantity } : item);
+            localStorage.setItem("basket", JSON.stringify(newBasket));
+            return {...state, basket: newBasket};
         case "SAVE_USER_DATA":
+            localStorage.setItem("user", null);
             return {...state, user: action.payload};
         default:
             return state;

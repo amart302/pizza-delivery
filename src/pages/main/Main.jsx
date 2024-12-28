@@ -12,6 +12,8 @@ export default function Main(){
     const [ isLoading, setIsLoading ] = useState(true);
     const dispatch = useDispatch();
     const data = useSelector(state => state.data);
+    const basket = useSelector(state => state.basket);
+    
 
     useEffect(() => {
         dispatch(fetchData());

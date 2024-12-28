@@ -67,7 +67,6 @@ export default function Header(){
                 <div className="header-buttons-container">
                     {
                         (!user) ? <button className="login-button" onClick={() => setForm(true)}>Войти</button> : <button className="login-button" onClick={() => {
-                            localStorage.setItem("user", null);
                             dispatch({type: "SAVE_USER_DATA", payload: null});
                             window.location.reload();
                         }}>Выйти</button>
