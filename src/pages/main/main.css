@@ -44,3 +44,8 @@ main{
     font-weight: 800;
     color: #F7D22D;
 }
+@media (max-width: 1900px) {
+    .pizzaGuy{
+        display: none;
+    }
+}

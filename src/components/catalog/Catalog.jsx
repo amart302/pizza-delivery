@@ -6,6 +6,7 @@ import { useState } from "react";
 
 export default function Catalog(isLoading){
     const dispatch = useDispatch();
+    const user = useSelector(state => state.user);
     const data = useSelector(state => state.data);
     const [ messageStyles, setMessageStyles ] = useState({
         top: "-100px",
@@ -14,6 +15,10 @@ export default function Catalog(isLoading){
     const [ message, setMessage ] = useState(false);
     
     const addToBusket = (id) => {
+        if(!user) {
+            dispatch({ type: "OPEN_FORM" });
+            return;
+        };
         const product = data.find(item => item.id == id);
         
         dispatch({

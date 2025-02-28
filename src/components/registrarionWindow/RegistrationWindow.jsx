@@ -1,12 +1,13 @@
 import { useForm } from "react-hook-form";
 import "./registrationWindow.css";
 import { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
-export default function RegistrationWindow({ onClose }){
+export default function RegistrationWindow(){
     const dispatch = useDispatch();
+    const showForm = useSelector(state => state.showForm);
     const [ errorMessage, setErrorMessage ] = useState(false);
-    const { register, handleSubmit, formState: { errors } } = useForm();
+    const { register, handleSubmit, reset, formState: { errors } } = useForm();
     const [ changingForms, setChangingForms ] = useState(false);
 
     const onSubmitRegistration = (data) => {
@@ -26,7 +27,7 @@ export default function RegistrationWindow({ onClose }){
                 dispatch({type: "SAVE_USER_DATA", payload: newUser});
                 localStorage.setItem("user", JSON.stringify(newUser));
                 alert("Регистрация прошла успешно");
-                onClose();
+                dispatch({ type: "CLOSE_FORM" });
             }
         }else{
             setErrorMessage("Пароли не совпадают");
@@ -46,12 +47,12 @@ export default function RegistrationWindow({ onClose }){
             dispatch({type: "SAVE_USER_DATA", payload: user});
             localStorage.setItem("user", JSON.stringify(user));
             alert("Успешный вход");
-            onClose();
+            dispatch({ type: "CLOSE_FORM" });
         }else{
             setErrorMessage("Неверный email или пароль");
         }
         
-    }
+    };
 
     const formatPhoneNumber = (value) => {
         const cleaned = value.replace(/\D/g, "");
@@ -66,7 +67,7 @@ export default function RegistrationWindow({ onClose }){
     const validatePhoneNumber = (value) => {
         const cleaned = value.replace(/\D/g, "");
         if(cleaned.length < 11) return "Номер телефона должен содержать 11 цифр";
-    }
+    };
 
     return (
         <div className="form-contrainer">
@@ -74,7 +75,7 @@ export default function RegistrationWindow({ onClose }){
                 changingForms && 
                 <form onSubmit={handleSubmit(onSubmitRegistration)}>
                     <span>Регистрация</span>
-                    <img src="./images/cross.svg" alt="" className="close-form" onClick={onClose} />
+                    <img src="./images/cross.svg" alt="" className="close-form" onClick={() => dispatch({ type: "CLOSE_FORM" })} />
                     <div className="form-group">
                         <label htmlFor="email">Электронную почту</label>
                         <input type="text" placeholder="example@gmail.com" {...register("email", { required: "Это поле обязательно для заполнения", pattern: { value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i ,message: 'Некорректный email' }})} />
@@ -103,6 +104,7 @@ export default function RegistrationWindow({ onClose }){
                     <p style={{textAlign: "center"}}>Уже есть аккаунт? <a href="#" onClick={() => {
                         setErrorMessage("");
                         setChangingForms(false);
+                        reset();
                     }}>Войти</a></p>
                 </form>
             }
@@ -111,7 +113,7 @@ export default function RegistrationWindow({ onClose }){
                 !changingForms && 
                 <form onSubmit={handleSubmit(onSubmitAvtorization)}>
                     <span>Вход на сайт</span>
-                    <img src="./images/cross.svg" alt="" className="close-form" onClick={onClose} />
+                    <img src="./images/cross.svg" alt="" className="close-form" onClick={() => dispatch({ type: "CLOSE_FORM" })} />
                     <div className="form-group">
                         <label htmlFor="email">Электронную почту</label>
                         <input type="text" placeholder="example@gmail.com" {...register("email", { required: "Это поле обязательно для заполнения", pattern: { value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i ,message: 'Некорректный email' }})} />
@@ -127,6 +129,7 @@ export default function RegistrationWindow({ onClose }){
                     <p style={{textAlign: "center"}}>У вас нет аккаунта? <a href="#" onClick={() => {
                         setErrorMessage("");
                         setChangingForms(true);
+                        reset();
                     }}>Зарегистрироваться</a></p>
                 </form>
             }

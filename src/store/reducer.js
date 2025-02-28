@@ -1,7 +1,8 @@
 const initialState = {
     data: [],
     basket: JSON.parse(localStorage.getItem("basket")) || [],
-    user: JSON.parse(localStorage.getItem("user")) || null
+    user: JSON.parse(localStorage.getItem("user")) || null,
+    showForm: false
 };
 
 export function reducer(state = initialState, action){
@@ -37,6 +38,10 @@ export function reducer(state = initialState, action){
         case "SAVE_USER_DATA":
             localStorage.setItem("user", null);
             return {...state, user: action.payload};
+        case "OPEN_FORM":
+            return {...state, showForm: true};
+        case "CLOSE_FORM":
+            return {...state, showForm: false};
         default:
             return state;
     }

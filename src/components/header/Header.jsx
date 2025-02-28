@@ -1,27 +1,23 @@
 import { useDispatch, useSelector } from "react-redux";
 import "./header.css";
 import { useNavigate } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import RegistrationWindow from "../registrarionWindow/RegistrationWindow";
 
 export default function Header(){
     const dispatch = useDispatch();
     const user = useSelector(state => state.user);
+    const showForm = useSelector(state => state.showForm);
     const basketLength = useSelector(state => state.basket).length;
     
     const navigate = useNavigate();
-    const [ form, setForm ] = useState(false);
-    
-    const closeForm = () => {
-        setForm(false);
-    };
 
     return(
         <>
         <header>
             <div className="header-container1">
                 <div className="header-logo-container">
-                    <img src="./images/logo.svg" alt="" />
+                    <img src="./images/logo.svg" alt="" onClick={() => {navigate("/")}} />
                 </div>
                 <div className="delivery-info">
                     <div className="delivery-details">
@@ -66,7 +62,9 @@ export default function Header(){
                 </nav>
                 <div className="header-buttons-container">
                     {
-                        (!user) ? <button className="login-button" onClick={() => setForm(true)}>Войти</button> : <button className="login-button" onClick={() => {
+                        (!user) ? <button className="login-button" onClick={() => {
+                            dispatch({ type: "OPEN_FORM" })
+                        }}>Войти</button> : <button className="login-button" onClick={() => {
                             dispatch({type: "SAVE_USER_DATA", payload: null});
                             window.location.reload();
                         }}>Выйти</button>
@@ -76,7 +74,7 @@ export default function Header(){
             </div>
         </header>
                 {
-                    form && <RegistrationWindow onClose={ closeForm }/>
+                    showForm && <RegistrationWindow />
                 }
         </>
     )

@@ -1,11 +1,14 @@
-export default function BasketHeader(){
-    
+import { useNavigate } from "react-router-dom";
+
+export default function SmallHeader(){
+    const navigate = useNavigate();
+
     return(
         <>
         <header>
             <div className="header-container1">
                 <div className="header-logo-container">
-                    <img src="./images/logo.svg" alt="" />
+                <img src="./images/logo.svg" alt="" onClick={() => {navigate("/")}} />
                 </div>
                 <div className="delivery-info">
                     <div className="delivery-details">

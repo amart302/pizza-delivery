@@ -1,0 +1,18 @@
+.making-an-order-main{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    align-content: center;
+    max-width: 1400px;
+    min-height: calc(100vh - 581px);
+    margin-inline: auto;
+}
+
+.payment-methods-container{
+    display: flex;
+    gap: 30px;
+}
+.payment-methods-container div{
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}

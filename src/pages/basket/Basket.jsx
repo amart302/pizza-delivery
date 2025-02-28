@@ -4,7 +4,7 @@ import Footer from "../../components/footer/Footer";
 
 import "./basket.css";
 import { useEffect, useState } from "react";
-import BasketHeader from "../../components/basketHeader/BasketHeader";
+import BasketHeader from "../../components/smallHeader/smallHeader";
 import { useNavigate } from "react-router-dom";
 
 export default function Basket(){
@@ -16,8 +16,6 @@ export default function Basket(){
     useEffect(() => {
         if(basket.length) setCheck(true);
         else setCheck(false);
-        console.log(basket);
-        
     }, [basket])
 
     const incrementQuantity = (id) => {
@@ -49,6 +47,7 @@ export default function Basket(){
         return result;
     }
 
+
     return (
         <div className="App">
             <BasketHeader />
@@ -57,7 +56,7 @@ export default function Basket(){
                 <div className="basket-products-container">
                     {
                         check && basket.map(item => (
-                            <div className="basket-card">
+                            <div className="basket-card" key={item.id}>
                             <img src={item.image} alt="" />
                             <div className="basket-card-info">
                                 <p className="basket-card-name">{item.name}</p>
@@ -88,7 +87,7 @@ export default function Basket(){
                             </div>
                             <div className="orderSummaryContainer">
                                 <h3>Сумма заказа: <span>{priceCalculationFunction()} ₽</span></h3>
-                                <button>Оформить заказ</button>
+                                <button onClick={() => navigate("/makingAnOrder")}>Оформить заказ</button>
                             </div>
                         </div>
                     }
