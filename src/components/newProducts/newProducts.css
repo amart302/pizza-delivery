@@ -6,6 +6,9 @@
 .new-product-card{
     display: flex;
     gap: 20px;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+    border-radius: 16px;
+    overflow: hidden;
 }
 .new-product-card img{
     width: 130px;

@@ -1,7 +1,7 @@
 import React from "react"
 import ContentLoader from "react-content-loader"
 
-const ProductsSceleton = (props) => (
+const CatalogSceleton = (props) => (
   <ContentLoader 
     speed={2}
     width={453}
@@ -18,4 +18,4 @@ const ProductsSceleton = (props) => (
   </ContentLoader>
 )
 
-export default ProductsSceleton
+export default CatalogSceleton;

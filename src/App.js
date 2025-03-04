@@ -4,7 +4,7 @@ import './App.css';
 import Main from './pages/main/Main';
 import Basket from './pages/basket/Basket';
 import NotFound from './pages/notFound/NotFound';
-import MakingAnOrder from './components/makingAnOrder/MakingAnOrder';
+import MakingAnOrder from './pages/makingAnOrder/MakingAnOrder';
 
 function App() {
   return (

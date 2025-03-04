@@ -1,14 +1,22 @@
 import { useSelector } from "react-redux";
 import "./newProducts.css";
-import NewProductsLoader from "../sceleton/NewProductsLoader"
+import NewProductsSceleton from "../sceleton/NewProductsSceleton"
 
 export default function NewProducts(isLoading){
     const data = useSelector(state => state.data);
-
+    const i = 0;
+    const func = () => {
+        i++;
+        if(i < 4) func();
+        return 
+    }
     return (
         <div className="new-products-container">
             {
-                (isLoading.meaning) ? <NewProductsLoader count={4}/>
+                (isLoading.meaning) ? 
+                [...Array(4)].map((_, index) => (
+                    <NewProductsSceleton key={index} />
+                ))
                 : data.map(item => (
                     (item.new) ? 
                     <div className="new-product-card" key={item.id}>

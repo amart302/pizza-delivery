@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 
 import "./catalog.css";
-import ProductsLoader from "../sceleton/ProductsLoader";
+import CatalogSceleton from "../sceleton/CatalogSceleton";
 import { useState } from "react";
 
 export default function Catalog(isLoading){
@@ -19,7 +19,7 @@ export default function Catalog(isLoading){
             dispatch({ type: "OPEN_FORM" });
             return;
         };
-        const product = data.find(item => item.id == id);
+        const product = data.find(item => item.id === id);
         
         dispatch({
             type: "ADD_TO_BASKET",
@@ -65,7 +65,10 @@ export default function Catalog(isLoading){
                 }
                 <div className="products-container">
                     {
-                        (isLoading.meaning) ? <ProductsLoader count={12} />
+                        (isLoading.meaning) ? 
+                        [...Array(9)].map((_, index) => (
+                            <CatalogSceleton key={index} />
+                        ))
                         : data.map(item => (
                             <div className="product-card" key={item.id}>
                                 <img src={item.image} alt="" />

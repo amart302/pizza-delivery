@@ -9,18 +9,18 @@ export default function Footer(){
                     <img src="./images/logo.svg" alt="" />
                 </div>
                 <div className="footer-links">
-                    <a href="">Калорийность и состав</a>
-                    <a href="">Правовая информация</a>
+                    <a href="#">Калорийность и состав</a>
+                    <a href="#">Правовая информация</a>
                 </div>
                 <div className="social-media">
                     <p>Мы в соцсетях</p>
                     <div className="social-media-links">
-                        <a href="">YouTube</a>
-                        <a href="">Facebook</a>
-                        <a href="">Москва ул.Проспект</a>
-                        <a href="">Instagram</a>
-                        <a href="">ВКонтакте</a>
-                        <a href="">Вернадского 86В</a>
+                        <a href="#">YouTube</a>
+                        <a href="#">Facebook</a>
+                        <a href="#">Москва ул.Проспект</a>
+                        <a href="#">Instagram</a>
+                        <a href="#">ВКонтакте</a>
+                        <a href="#">Вернадского 86В</a>
                     </div>
                 </div>
                 <div className="footer-bottom">

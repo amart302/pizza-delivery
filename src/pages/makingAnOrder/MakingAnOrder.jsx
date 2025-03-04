@@ -1,6 +1,6 @@
 import { useForm } from "react-hook-form";
-import Footer from "../footer/Footer";
-import SmallHeader from "../smallHeader/smallHeader";
+import Footer from "../../components/footer/Footer";
+import SmallHeader from "../../components/smallHeader/smallHeader";
 import "./makingAnOrder.css";
 import { useSelector } from "react-redux";
 import { useEffect } from "react";

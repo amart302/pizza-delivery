@@ -1,24 +1,23 @@
 import { useForm } from "react-hook-form";
 import "./registrationWindow.css";
 import { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 
 export default function RegistrationWindow(){
     const dispatch = useDispatch();
-    const showForm = useSelector(state => state.showForm);
     const [ errorMessage, setErrorMessage ] = useState(false);
     const { register, handleSubmit, reset, formState: { errors } } = useForm();
     const [ changingForms, setChangingForms ] = useState(false);
 
     const onSubmitRegistration = (data) => {
         setErrorMessage("");
-        if(data.password == data.confirmPassword){   
+        if(data.password === data.confirmPassword){   
             const users = JSON.parse(localStorage.getItem("users")) || [];
             data.id = users.length + 1;
             const newUser = data;
             delete newUser.confirmPassword;
-            const isEmailExists = users.some(item => item.email == newUser.email);
-            const isPhoneExists = users.some(item => item.phoneNumber == newUser.phoneNumber);
+            const isEmailExists = users.some(item => item.email === newUser.email);
+            const isPhoneExists = users.some(item => item.phoneNumber === newUser.phoneNumber);
             if(isEmailExists) setErrorMessage("Пользователь с этой почтой уже существует");
             else if(isPhoneExists) setErrorMessage("Пользователь с этим номером уже существует");
             else{
@@ -38,9 +37,10 @@ export default function RegistrationWindow(){
         let user;
         let check = false;
         users.map(item => {
-            if(item.password == data.password && item.email == data.email) 
+            if(item.password === data.password && item.email === data.email){
                 user = item;
                 check = true;
+            }
         });
         if(check){
             dispatch({type: "REMOVE_USER_DATA", payload: user});

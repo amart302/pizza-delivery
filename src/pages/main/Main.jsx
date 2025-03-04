@@ -19,15 +19,13 @@ export default function Main(){
         setTimeout(() => {
             if(data) setIsLoading(false);
         }, 2000)
-    }, [])
+    }, [data])
 
     return(
         <div className="App">
             <Header />
             <main>
                 <div className="main-container1">
-                    {/* <button className=""></button>
-                    <button className=""></button> */}
                     <div className="slider">
                         <img src="./images/slide2.png" alt="" />
                         <img src="./images/slide3.png" alt="" />
@@ -40,6 +38,20 @@ export default function Main(){
                 <div className="main-container3">
                     <h2>Паста</h2>
                     <Catalog meaning={isLoading}/>
+                </div>
+                <div className="main-container4">
+                    <h2>Наши <span>акции</span></h2>
+                    <div className="main-container4-child">
+                        <div className="main-container4-child-pod-block1">
+                            <img src="./images/customCakes.png" alt=""/>
+                        </div>
+                        <div className="main-container4-child-pod-block2">
+                            <img src="./images/customCakes.png" alt="" />
+                            <img src="./images/customCakes.png" alt="" />
+                            <img src="./images/customCakes.png" alt="" />
+                            <img src="./images/customCakes.png" alt="" />
+                        </div>
+                    </div>
                 </div>
                 <img src="./images/pizzaGuy.png" alt="" className="pizzaGuy"/>
             </main>
