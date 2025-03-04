@@ -65,7 +65,8 @@ export default function Header(){
                         (!user) ? <button className="login-button" onClick={() => {
                             dispatch({ type: "OPEN_FORM" })
                         }}>Войти</button> : <button className="login-button" onClick={() => {
-                            dispatch({type: "SAVE_USER_DATA", payload: null});
+                            dispatch({type: "REMOVE_USER_DATA", payload: null});
+                            dispatch({ type: "CLEAR_TO_BASKET" });
                             window.location.reload();
                         }}>Выйти</button>
                     }

@@ -52,14 +52,6 @@
     font-weight: 700;
     color: #231F20;
 }
-.basket-card-card-bottom{
-    width: calc(100% - 40px);
-    position: absolute;
-    bottom: 0;
-    display: grid;
-    grid-template-columns: 1fr 220px;
-    align-items: center;
-}
 .basket-card-quantity-parent{
     display: flex;
     justify-content: center;
@@ -106,7 +98,7 @@
 .backToShopButton{
     position: absolute;
     bottom: 0;
-    left: 0;
+    left: 20px;
     background: transparent;
     border: none;
     display: flex;

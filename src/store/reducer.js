@@ -27,6 +27,9 @@ export function reducer(state = initialState, action){
             newBasket = state.basket.filter(item => item.basketId !== action.payload);
             localStorage.setItem("basket", JSON.stringify(newBasket));
             return {...state, basket: newBasket};
+        case "CLEAR_TO_BASKET":
+            localStorage.removeItem("basket");
+            return {...state, basket: []};
         case "INCREMENT_QUANTITY":
             newBasket = state.basket.map(item => item.basketId === action.payload ? {...item, quantity: item.quantity + 1 } : item);
             localStorage.setItem("basket", JSON.stringify(newBasket));
@@ -35,8 +38,8 @@ export function reducer(state = initialState, action){
             newBasket = state.basket.map(item => item.basketId === action.payload ? {...item, quantity: (item.quantity > 1) ? item.quantity - 1 : item.quantity } : item);
             localStorage.setItem("basket", JSON.stringify(newBasket));
             return {...state, basket: newBasket};
-        case "SAVE_USER_DATA":
-            localStorage.setItem("user", null);
+        case "REMOVE_USER_DATA":
+            localStorage.removeItem("user");
             return {...state, user: action.payload};
         case "OPEN_FORM":
             return {...state, showForm: true};

@@ -24,9 +24,8 @@ export default function RegistrationWindow(){
             else{
                 users.push(newUser);
                 localStorage.setItem("users", JSON.stringify(users));
-                dispatch({type: "SAVE_USER_DATA", payload: newUser});
+                dispatch({type: "REMOVE_USER_DATA", payload: newUser});
                 localStorage.setItem("user", JSON.stringify(newUser));
-                alert("Регистрация прошла успешно");
                 dispatch({ type: "CLOSE_FORM" });
             }
         }else{
@@ -44,9 +43,10 @@ export default function RegistrationWindow(){
                 check = true;
         });
         if(check){
-            dispatch({type: "SAVE_USER_DATA", payload: user});
+            dispatch({type: "REMOVE_USER_DATA", payload: user});
+            dispatch({ type: "CLEAR_TO_BASKET" });
             localStorage.setItem("user", JSON.stringify(user));
-            alert("Успешный вход");
+            window.location.reload();
             dispatch({ type: "CLOSE_FORM" });
         }else{
             setErrorMessage("Неверный email или пароль");
