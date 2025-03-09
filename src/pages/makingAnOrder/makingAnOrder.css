@@ -1,12 +1,26 @@
 .making-an-order-main{
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: 1fr 0.5fr;
     align-content: center;
     max-width: 1400px;
     min-height: calc(100vh - 581px);
     margin-inline: auto;
 }
-
+form{
+    width: auto;
+}
+.backToBasketButton{
+    background: transparent;
+    border: none;
+    display: flex;
+    align-items: center;
+    font-size: 15px;
+    font-weight: 700;
+    color: #696F7A;
+    gap: 10px;
+    cursor: pointer;
+    transition: all 0.2s;
+}
 .payment-methods-container{
     display: flex;
     gap: 30px;

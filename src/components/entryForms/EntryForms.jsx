@@ -1,9 +1,10 @@
 import { useForm } from "react-hook-form";
-import "./registrationWindow.css";
+import "./entryForms.css";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
+import { toast } from "sonner";
 
-export default function RegistrationWindow(){
+export default function EntryForms({ setShowForm }){
     const dispatch = useDispatch();
     const [ errorMessage, setErrorMessage ] = useState(false);
     const { register, handleSubmit, reset, formState: { errors } } = useForm();
@@ -25,7 +26,8 @@ export default function RegistrationWindow(){
                 localStorage.setItem("users", JSON.stringify(users));
                 dispatch({type: "REMOVE_USER_DATA", payload: newUser});
                 localStorage.setItem("user", JSON.stringify(newUser));
-                dispatch({ type: "CLOSE_FORM" });
+                setShowForm(false);
+                toast.success(<div style={{ fontSize: "16px" }}>Успешная регистрация</div>);
             }
         }else{
             setErrorMessage("Пароли не совпадают");
@@ -44,10 +46,9 @@ export default function RegistrationWindow(){
         });
         if(check){
             dispatch({type: "REMOVE_USER_DATA", payload: user});
-            dispatch({ type: "CLEAR_TO_BASKET" });
             localStorage.setItem("user", JSON.stringify(user));
-            window.location.reload();
-            dispatch({ type: "CLOSE_FORM" });
+            setShowForm(false);
+            toast.success(<div style={{ fontSize: "16px" }}>Успешный вход</div>);
         }else{
             setErrorMessage("Неверный email или пароль");
         }
@@ -75,7 +76,7 @@ export default function RegistrationWindow(){
                 changingForms && 
                 <form onSubmit={handleSubmit(onSubmitRegistration)}>
                     <span>Регистрация</span>
-                    <img src="./images/cross.svg" alt="" className="close-form" onClick={() => dispatch({ type: "CLOSE_FORM" })} />
+                    <img src="./images/cross.svg" alt="" className="close-form" onClick={() => setShowForm(false)} />
                     <div className="form-group">
                         <label htmlFor="email">Электронную почту</label>
                         <input type="text" placeholder="example@gmail.com" {...register("email", { required: "Это поле обязательно для заполнения", pattern: { value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i ,message: 'Некорректный email' }})} />
@@ -113,7 +114,7 @@ export default function RegistrationWindow(){
                 !changingForms && 
                 <form onSubmit={handleSubmit(onSubmitAvtorization)}>
                     <span>Вход на сайт</span>
-                    <img src="./images/cross.svg" alt="" className="close-form" onClick={() => dispatch({ type: "CLOSE_FORM" })} />
+                    <img src="./images/cross.svg" alt="" className="close-form" onClick={() => setShowForm(false)} />
                     <div className="form-group">
                         <label htmlFor="email">Электронную почту</label>
                         <input type="text" placeholder="example@gmail.com" {...register("email", { required: "Это поле обязательно для заполнения", pattern: { value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i ,message: 'Некорректный email' }})} />

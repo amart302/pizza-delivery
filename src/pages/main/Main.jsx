@@ -7,6 +7,7 @@ import { fetchData } from "../../store/products";
 import { useDispatch, useSelector } from "react-redux";
 
 import "./main.css";
+import { Toaster } from "sonner";
 
 export default function Main(){
     const [ isLoading, setIsLoading ] = useState(true);
@@ -24,6 +25,7 @@ export default function Main(){
     return(
         <div className="App">
             <Header />
+            <Toaster richColors position="top-center" />
             <main>
                 <div className="main-container1">
                     <div className="slider">

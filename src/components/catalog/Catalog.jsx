@@ -3,22 +3,14 @@ import { useDispatch, useSelector } from "react-redux";
 import "./catalog.css";
 import CatalogSceleton from "../sceleton/CatalogSceleton";
 import { useState } from "react";
+import { toast } from "sonner";
 
 export default function Catalog(isLoading){
     const dispatch = useDispatch();
     const user = useSelector(state => state.user);
     const data = useSelector(state => state.data);
-    const [ messageStyles, setMessageStyles ] = useState({
-        top: "-100px",
-        opacity: 0
-    })
-    const [ message, setMessage ] = useState(false);
     
     const addToBusket = (id) => {
-        if(!user) {
-            dispatch({ type: "OPEN_FORM" });
-            return;
-        };
         const product = data.find(item => item.id === id);
         
         dispatch({
@@ -28,62 +20,31 @@ export default function Catalog(isLoading){
                 id: product.id,
                 basketId: Date.now()
             }
-        })
-        basketMessage();
-    }
-
-    const basketMessage = () => {
-        setMessage(true);
-        setTimeout(() => {
-            setMessageStyles({
-                top: "20px",
-                opacity: 1
-            });
-        }, 50)
-        setTimeout(() => {
-            setMessageStyles({
-                top: "100px",
-                opacity: 0
-            })
-        }, 500)
-        setTimeout(() => {
-            setMessage(false);
-            setMessageStyles({
-                top: "-100px",
-                opacity: 0
-            })
-        }, 800)
+        });
+        toast(<div style={{ fontSize: "16px" }}>Товар добавлен в корзину</div>);
     }
 
     return(
-            <>
+            <div className="products-container">
                 {
-                    message && 
-                    <div className="message" style={messageStyles}>
-                        Товар добавлен в корзину
-                    </div>
-                }
-                <div className="products-container">
-                    {
-                        (isLoading.meaning) ? 
-                        [...Array(9)].map((_, index) => (
-                            <CatalogSceleton key={index} />
-                        ))
-                        : data.map(item => (
-                            <div className="product-card" key={item.id}>
-                                <img src={item.image} alt="" />
-                                <div className="product-info">
-                                    <p className="product-name">{item.name}</p>
-                                    <p className="product-description">{item.description}</p>
-                                </div>
-                                <div className="product-card-bottom">
-                                    <p className="product-price">от {item.price} ₽</p>
-                                    <button className="add-to-basket-button" onClick={() => addToBusket(item.id)}>Добавить в корзину</button>
-                                </div>
+                    (isLoading.meaning) ? 
+                    [...Array(9)].map((_, index) => (
+                        <CatalogSceleton key={index} />
+                    ))
+                    : data.map(item => (
+                        <div className="product-card" key={item.id}>
+                            <img src={item.image} alt="" />
+                            <div className="product-info">
+                                <p className="product-name">{item.name}</p>
+                                <p className="product-description">{item.description}</p>
                             </div>
-                        ))
-                    }
-                </div>
-            </>
+                            <div className="product-card-bottom">
+                                <p className="product-price">от {item.price} ₽</p>
+                                <button className="add-to-basket-button" onClick={() => addToBusket(item.id)}>Добавить в корзину</button>
+                            </div>
+                        </div>
+                    ))
+                }
+            </div>
     )
 }

@@ -69,16 +69,19 @@ export default function MakingAnOrder(){
                                 <label htmlFor="paymentMethods" id="cash">Наличными</label>
                             </div>
                             <div>
-                                <input type="radio" name="paymentMethods" value="card" {...register("paymentMethods", { required: "Это поле обязательно для заполнения" })}/>
+                                <input type="radio" name="paymentMethods" value="card" {...register("paymentMethods", { required: "Необходимо выбрать способ оплаты" })}/>
                                 <label htmlFor="paymentMethods" id="card">Картой</label>
                             </div>
                         </div>
                         { errors.paymentMethods && <p className="error-message">{ errors.paymentMethods.message }</p> }
                     </div>
-                    <button type="submit">Оформить заказ</button>
+                    <div className="form-group">
+                    <button className="backToBasketButton" onClick={() => navigate("/basket")}><img src="./images/arrow.svg" alt="" />Вернуться в корзину</button>
+                        <button type="submit">Оформить заказ</button>
+                    </div>
                 </form>
                 <div className="order-container">
-                    <span>Состав заказа</span>
+                    <h2 style={{ color: "rgb(247, 210, 45)" }}>Состав заказа</h2>
                     {
                         basket.map(item => {
                             {

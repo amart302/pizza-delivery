@@ -2,7 +2,7 @@ form{
     position: relative;
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: 26px;
     background-color: white;
     padding: 30px;
     border-radius: 12px;
@@ -31,7 +31,7 @@ form input:focus{
     grid-template-columns: repeat(2, 1fr);
     gap: 10px;
 }
-form button{
+form button[type=submit]{
     background-color: #F7D22D;
     color: white;
     padding: 10px 20px;
@@ -40,6 +40,6 @@ form button{
     cursor: pointer;
     transition: all 0.2s;
 }
-form button:hover{
+form button[type=submit]:hover{
     background-color: #e2c02a;
 }

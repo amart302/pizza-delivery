@@ -6,10 +6,12 @@ import "./basket.css";
 import { useEffect, useState } from "react";
 import BasketHeader from "../../components/smallHeader/smallHeader";
 import { useNavigate } from "react-router-dom";
+import { toast, Toaster } from "sonner";
 
 export default function Basket(){
     const dispatch = useDispatch();
     const navigate = useNavigate();
+    const user = useSelector(state => state.user);
     const basket = useSelector(state => state.basket);
     const [ check, setCheck ] = useState(false);
 
@@ -47,10 +49,18 @@ export default function Basket(){
         return result;
     }
 
+    const makingAnOrder = () => {
+        if(!user){
+            toast.error("Авторизуйтесь для оформления заказа");
+            return;
+        }
+        navigate("/makingAnOrder");
+    };
 
     return (
         <div className="App">
             <BasketHeader />
+            <Toaster richColors position="top-center" />
             <main className="basket-main" style={(!check) ? {justifyContent: "center", alignItems: "center"} : {}}>
                 {(!check) ? <><img src="./images/emptyBasket.png" alt="" className="emptyBasket"/><h2>Ваша корзина пуста</h2></> : <h2 style={{color: "#F7D22D"}}>Корзина</h2>}
                 <div className="basket-products-container">
@@ -87,7 +97,7 @@ export default function Basket(){
                             </div>
                             <div className="orderSummaryContainer">
                                 <h3>Сумма заказа: <span>{priceCalculationFunction()} ₽</span></h3>
-                                <button onClick={() => navigate("/makingAnOrder")}>Оформить заказ</button>
+                                <button onClick={() => makingAnOrder()}>Оформить заказ</button>
                             </div>
                         </div>
                     }

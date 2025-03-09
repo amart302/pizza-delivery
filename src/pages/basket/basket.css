@@ -6,11 +6,11 @@
     flex-direction: column;
     justify-content: space-between;
     min-height: calc(100vh - 581px);
-    gap: 0;
+    gap: 30px;
     padding-inline: 20px;
 }
 .basket-main h2{
-    font-size: 40px;
+    font-size: 30px;
     font-weight: 800;
     color: #231F20;
 }

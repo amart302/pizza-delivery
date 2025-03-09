@@ -1,13 +1,13 @@
 import { useDispatch, useSelector } from "react-redux";
 import "./header.css";
 import { useNavigate } from "react-router-dom";
+import EntryForms from "../entryForms/EntryForms";
 import { useState } from "react";
-import RegistrationWindow from "../registrarionWindow/RegistrationWindow";
 
 export default function Header(){
     const dispatch = useDispatch();
     const user = useSelector(state => state.user);
-    const showForm = useSelector(state => state.showForm);
+    const [ showForm, setShowForm ] = useState(false);
     const basketLength = useSelector(state => state.basket).length;
     
     const navigate = useNavigate();
@@ -63,7 +63,7 @@ export default function Header(){
                 <div className="header-buttons-container">
                     {
                         (!user) ? <button className="login-button" onClick={() => {
-                            dispatch({ type: "OPEN_FORM" })
+                            setShowForm(true);
                         }}>Войти</button> : <button className="login-button" onClick={() => {
                             dispatch({type: "REMOVE_USER_DATA", payload: null});
                             dispatch({ type: "CLEAR_TO_BASKET" });
@@ -75,7 +75,7 @@ export default function Header(){
             </div>
         </header>
                 {
-                    showForm && <RegistrationWindow />
+                    showForm && <EntryForms setShowForm={setShowForm} />
                 }
         </>
     )
