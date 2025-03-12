@@ -4,7 +4,7 @@
 
 ## 🚀 Демо
 
-Вы можете посмотреть развернутый сайт здесь: [Pizza Delivery App](https://pizza-delivery-five-nu.vercel.app/)
+Вы можете посмотреть развернутый сайт здесь: [Pizza Delivery App](https://pizza-delivery-azure.vercel.app/)
 
 ---
 
