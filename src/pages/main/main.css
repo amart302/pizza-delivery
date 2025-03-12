@@ -2,6 +2,7 @@ main{
     position: relative;
     display: flex;
     flex-direction: column;
+    padding-inline: 10px;
     gap: 60px;
 }
 .pizzaGuy{

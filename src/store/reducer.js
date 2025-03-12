@@ -1,7 +1,8 @@
 const initialState = {
+    user: JSON.parse(localStorage.getItem("user")) || null,
     data: [],
     basket: JSON.parse(localStorage.getItem("basket")) || [],
-    user: JSON.parse(localStorage.getItem("user")) || null,
+    orders: JSON.parse(localStorage.getItem("orders")) || []
 };
 
 export function reducer(state = initialState, action){
@@ -37,6 +38,10 @@ export function reducer(state = initialState, action){
             newBasket = state.basket.map(item => item.basketId === action.payload ? {...item, quantity: (item.quantity > 1) ? item.quantity - 1 : item.quantity } : item);
             localStorage.setItem("basket", JSON.stringify(newBasket));
             return {...state, basket: newBasket};
+        case "ADD_ORDER":
+            const updateOrders = [...state.orders, action.payload];
+            localStorage.setItem("orders", JSON.stringify(updateOrders));
+            return {...state, orders: updateOrders};
         case "REMOVE_USER_DATA":
             localStorage.removeItem("user");
             return {...state, user: action.payload};

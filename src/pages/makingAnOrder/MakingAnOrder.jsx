@@ -2,15 +2,18 @@ import { useForm } from "react-hook-form";
 import Footer from "../../components/footer/Footer";
 import SmallHeader from "../../components/smallHeader/smallHeader";
 import "./makingAnOrder.css";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { toast, Toaster } from "sonner";
 
 export default function MakingAnOrder(){
     const { register, handleSubmit, formState: { errors } } = useForm();
+    const dispatch = useDispatch();
     const user = useSelector(state => state.user);
     const navigate = useNavigate();
-    const basket = JSON.parse(localStorage.getItem("basket")) || [];
+    const basket = useSelector(state => state.basket);
+    const orders = useSelector(state => state.orders);
 
     useEffect(() => {
         if(!basket.length){
@@ -34,14 +37,41 @@ export default function MakingAnOrder(){
     };
 
     const makingAnOrder = (data) => {
-        console.log(data);
-    }
+        data.order = basket;
+        data.totalPrice = calculateTotalPrice();
+        data.date = getDate();
+        dispatch({ type: "ADD_ORDER", payload: data });
+        toast.success("Заказ успешно оформлен!");
+        setTimeout(() => {
+            dispatch({ type: "CLEAR_TO_BASKET" });
+            navigate("/");
+        }, 1000);
+    };
+
+    const getDate = () => {
+        const date = new Date();
+        const formattedDateTime = date.toLocaleString('ru-RU', {
+            day: '2-digit',
+            month: '2-digit',
+            year: 'numeric',
+            hour: '2-digit',
+            minute: '2-digit',
+        });
+        return formattedDateTime;
+    };
+
+    const calculateTotalPrice = () => {
+        let totalPrice = 0;
+        basket.map(item => totalPrice += item.price * item.quantity);
+        return totalPrice;
+    };
 
     return(
         <>
             <SmallHeader />
+            <Toaster richColors position="top-center" />
             <main className="making-an-order-main">
-                <form onSubmit={handleSubmit(makingAnOrder)}>
+                <form className="making-an-order-form" onSubmit={handleSubmit(makingAnOrder)}>
                     <span>Заказ на доставку</span>
                     <div className="form-group">
                         <label htmlFor="name">Имя</label>
@@ -80,17 +110,21 @@ export default function MakingAnOrder(){
                         <button type="submit">Оформить заказ</button>
                     </div>
                 </form>
-                <div className="order-container">
+                <div className="order-container-parent">
                     <h2 style={{ color: "rgb(247, 210, 45)" }}>Состав заказа</h2>
-                    {
-                        basket.map(item => {
+                    <div className="order-container">
                             {
-                                <div>
-                                    
-                                </div>
+                                basket.map(item => (
+                                        <div className="order-card" key={item.id}>
+                                            <img src={ item.image } alt="" />
+                                            <p className="order-card-name">{ (item.name)  }</p>
+                                            <p className="order-card-quantity">{ item.quantity }</p>
+                                            <p className="order-card-price">{ item.price } ₽</p>
+                                        </div>
+                                ))
                             }
-                        })
-                    }
+                    </div>
+                    <div className="total-price-container"><span>Сумма заказа</span><span>{ calculateTotalPrice() } ₽</span></div>
                 </div>
             </main>
             <Footer />

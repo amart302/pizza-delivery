@@ -1,13 +1,15 @@
-.making-an-order-main{
+    .making-an-order-main{
     display: grid;
     grid-template-columns: 1fr 0.5fr;
     align-content: center;
     max-width: 1400px;
     min-height: calc(100vh - 581px);
     margin-inline: auto;
+    margin-block: 20px
 }
-form{
-    width: auto;
+.making-an-order-form{
+    padding: 0;
+    gap: 62px;
 }
 .backToBasketButton{
     background: transparent;
@@ -29,4 +31,57 @@ form{
     display: flex;
     align-items: center;
     gap: 6px;
+}
+
+.order-container{
+    display: grid;
+    grid-template-columns: 1fr;
+    overflow: hidden;
+    overflow-y: auto;
+    height: 494px;
+    margin-block: 10px;
+}
+.order-card{
+    display: grid;
+    grid-template-columns: 100px 1fr 0.2fr 0.5fr;
+    align-items: center;
+    justify-content: space-between;
+    padding-block: 4px;
+    border-radius: 10px;
+}
+.order-card img{
+    width: 100px;
+}
+.order-card-name{
+    color: #231F20CC;
+    font-size: 16px;
+    font-weight: 600;
+}
+.order-card-quantity{
+    color: #231F20CC;
+    font-size: 16px;
+    font-weight: 600;
+    text-align: center;
+}
+.order-card-price{
+    color: #231F20;
+    font-size: 17px;
+    font-weight: 700;
+    text-align: end;
+}
+.total-price-container{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+.total-price-container > :first-child{
+    font-size: 20px;
+    font-weight: 600;
+    color: #231F2099;
+}
+
+.total-price-container > :last-child{
+    color: #231F20;
+    font-size: 22px;
+    font-weight: 700;
 }
