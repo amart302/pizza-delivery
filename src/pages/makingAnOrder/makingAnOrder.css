@@ -34,8 +34,8 @@
 }
 
 .order-container{
-    display: grid;
-    grid-template-columns: 1fr;
+    display: flex;
+    flex-direction: column;
     overflow: hidden;
     overflow-y: auto;
     height: 494px;
